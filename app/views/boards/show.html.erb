@@ -1,0 +1,19 @@
+<h1><%= @board.name %></h1>
+<p>Created by: <%= @board.email %></p>
+<p>Board Dimensions: <%= @board.width %> x <%= @board.height %></p>
+<p>Number of Mines: <%= @board.mines %></p>
+
+<h2>Minesweeper Board:</h2>
+<table border="1">
+  <% @board.data.each do |row| %>
+    <tr>
+      <% row.each do |cell| %>
+        <td style="text-align: center; width: 30px; height: 30px;">
+          <%= cell == '💣' ? '💣' : ' ' %>
+        </td>
+      <% end %>
+    </tr>
+  <% end %>
+</table>
+
+<%= link_to "Back to Home", root_path %>

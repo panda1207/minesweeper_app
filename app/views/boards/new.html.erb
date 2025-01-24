@@ -1,0 +1,63 @@
+<h1>Create a New Minesweeper Board</h1>
+
+<%= form_with model: @board, local: true do |f| %>
+  <div class="mb-3">
+    <%= f.label :name, "Board Name" %>
+    <%= f.text_field :name, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :email, "Email" %>
+    <%= f.email_field :email, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :width, "Board Width" %>
+    <%= f.number_field :width, class: "form-control", min: 1 %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :height, "Board Height" %>
+    <%= f.number_field :height, class: "form-control", min: 1 %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :mines, "Number of Mines" %>
+    <%= f.number_field :mines, class: "form-control", min: 1 %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.submit "Generate Board", class: "btn btn-primary" %>
+  </div>
+<% end %>
+
+<h2>Recent Boards</h2>
+
+<% if @recent_boards.any? %>
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>#</th>
+      <th>Board Name</th>
+      <th>Email</th>
+      <th>Created At</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @recent_boards.each_with_index do |board, index| %>
+      <tr>
+        <td><%= index + 1 %></td>
+        <td><%= link_to board.name, board_path(board) %></td>
+        <td><%= board.email %></td>
+        <td><%= board.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
+        <td><%= link_to 'View', board_path(board), class: 'btn btn-primary btn-sm' %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>No boards have been generated yet.</p>
+<% end %>
+
+<%= link_to "View All Boards", boards_path, class: "btn btn-secondary mt-3" %>
