@@ -10,17 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_01_24_151205) do
+ActiveRecord::Schema[8.0].define(version: 2025_01_24_154251) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
   create_table "boards", force: :cascade do |t|
-    t.string "name"
-    t.string "email"
-    t.integer "width"
-    t.integer "height"
-    t.integer "mines"
-    t.text "data"
+    t.string "name", null: false
+    t.string "email", null: false
+    t.integer "width", null: false
+    t.integer "height", null: false
+    t.integer "mines", null: false
+    t.jsonb "data", default: {}, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
