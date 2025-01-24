@@ -48,7 +48,7 @@
     <% @recent_boards.each_with_index do |board, index| %>
       <tr>
         <td><%= index + 1 %></td>
-        <td><%= link_to board.name, board_path(board) %></td>
+        <td><%= board.name %></td>
         <td><%= board.email %></td>
         <td><%= board.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
         <td><%= link_to 'View', board_path(board), class: 'btn btn-primary btn-sm' %></td>
